@@ -1,0 +1,63 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up C++ environment
+      uses: actions/setup-cpp@v1
+      with:
+        compiler: 'gcc'
+
+    - name: Install dependencies
+      run: sudo apt-get install -y cmake
+
+    - name: Build and Package project
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make package
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.deb
+        asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.deb
+        asset_content_type: application/deb
+    
+    - name: Upload Release Script
+      uses: actions/upload-release-asset@v1
+      env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.sh
+      asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.sh
+      asset_content_type: application/x-sh
