@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -y |
-        sudo apt-get install -y cmake cpack
+        sudo apt-get install -y cmake
 
     - name: Build and Package project
       run: |
