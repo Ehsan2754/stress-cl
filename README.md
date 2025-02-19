@@ -1,6 +1,6 @@
 # stress-cl
 
-![Build and Release](https://github.com/ehsan2754/<your-repo>/actions/workflows/release.yml/badge.svg)
+![Build and Release](https://github.com/ehsan2754/stress-cl/actions/workflows/release.yml/badge.svg)
 `stress-cl` is tool that allows runing a stress test on a specified OpenCL device, and provides help information.
 
 ## Features
