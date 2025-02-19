@@ -27,6 +27,7 @@ jobs:
         sudo apt-get -y install cmake opencl-headers ocl-icd-opencl-dev
 
     - name: Build and Package project
+      id: build_and_package
       run: |
         mkdir build
         cd build
@@ -63,3 +64,5 @@ jobs:
         asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.sh
         asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.sh
         asset_content_type: application/x-sh
+      run: |
+        pwd
