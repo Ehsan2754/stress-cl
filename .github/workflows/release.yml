@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        arch: [x86_64, aarch64]
+        arch: [aarch64]
 
     steps:
     - name: Checkout code
