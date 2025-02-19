@@ -16,13 +16,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up C++ environment
-      uses: actions/setup-cpp@v1
-      with:
-        compiler: 'gcc'
-
     - name: Install dependencies
-      run: sudo apt-get install -y cmake
+      run: sudo apt-get install -y cmake cpack
 
     - name: Build and Package project
       run: |
