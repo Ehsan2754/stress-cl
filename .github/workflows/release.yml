@@ -55,9 +55,9 @@ jobs:
     - name: Upload Release Script
       uses: actions/upload-release-asset@v1
       env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
-      asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.sh
-      asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.sh
-      asset_content_type: application/x-sh
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.sh
+        asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.sh
+        asset_content_type: application/x-sh
