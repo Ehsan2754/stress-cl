@@ -51,7 +51,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.deb
+        asset_path: ./stress-cl_${VERSION}_${{ matrix.arch }}.deb
         asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.deb
         asset_content_type: application/deb
     
@@ -61,8 +61,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./build/stress-cl_${VERSION}_${{ matrix.arch }}.sh
+        asset_path: ./stress-cl_${VERSION}_${{ matrix.arch }}.sh
         asset_name: stress-cl_${VERSION}_${{ matrix.arch }}.sh
         asset_content_type: application/x-sh
-      run: |
-        pwd
+ 
