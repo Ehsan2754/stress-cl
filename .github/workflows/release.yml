@@ -20,13 +20,6 @@ jobs:
       id: get_version
       run: echo "VERSION=$(cat version.txt)" >> $GITHUB_ENV
 
-    - name: Create Tag if not exists
-      id: create_tag
-      run: |
-        if ! git rev-parse "${{ env.VERSION }}" >/dev/null 2>&1; then
-          git tag "v${{ env.VERSION }}"
-          git push origin "${{ env.VERSION }}"
-        fi
 
     - name: Install dependencies
       run: |
